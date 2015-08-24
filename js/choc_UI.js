@@ -50,12 +50,6 @@ SamplerUI.prototype.setLowBuffer = function() {
 
 SamplerUI.prototype.draw = function() {
     
-    if(this.Lowbuffer==null)
-    {
-        this.setLowBuffer();
-    }
-        
-    
     var samplerUI=this;
     $("#"+this.container).highcharts({
                                title: {text: ''},

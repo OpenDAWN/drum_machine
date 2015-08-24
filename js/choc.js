@@ -123,7 +123,9 @@ function Sampler(context,file,name) {
     this.output=this.filter_lp;
 };
 
-Sampler.prototype.loaded=function (){}
+Sampler.prototype.loaded=function (){
+    sound_loaded();
+    }
 
 Sampler.prototype.loadBuffer = function() {
     var sampler=this;

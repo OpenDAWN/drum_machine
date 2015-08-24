@@ -19,7 +19,7 @@
         var AudioContext = window.AudioContext || window.webkitAudioContext;
         var context = new AudioContext();
         var selected_pattern=0;
-        var nb_tracks=7;
+        var nb_tracks=6;
         var isplaying=0;
         var kit=[];
         var pattern_manager=[];
@@ -27,6 +27,7 @@
         var sequencer;
         var nextNoteTime;
         var samplerUI_array=new Array(nb_tracks);
+        var loaded_sound=0;
  
 
         $(function () {
@@ -46,7 +47,18 @@
         $("#step").find("th").eq(step+1).find("button").addClass('active');
     };
 
-
+    function sound_loaded()
+    {
+        loaded_sound=loaded_sound+1;
+        if (loaded_sound==nb_tracks)
+        {
+            for (indice=0;indice<nb_tracks;indice++){
+                samplerUI_array[indice].setLowBuffer();
+            }
+            $("#pattern_play").removeAttr("disabled");
+        }
+        
+    }
 
     </script>
     
@@ -59,7 +71,7 @@
             <form class="form-inline">
                 
                 <input type="number" id="pattern_tempo" value=120 class="form-control"></input>
-                <button type="button" id="pattern_play" class="btn btn-default btn-primary form-control"  ><i class="fa fa-play"></i></button>
+                <button type="button" id="pattern_play" class="btn btn-default btn-primary form-control" disabled ><i class="fa fa-play"></i></button>
                 
                 <div class="form-group">
                     <div class="btn-group" data-toggle="buttons">
